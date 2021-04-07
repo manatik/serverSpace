@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://localhost:9000",
+  "port": 9000,
+  "jwtSecret": "Space invaders",
+  "mongoURL": "mongodb+srv://manat:12345@space.mdyey.mongodb.net/space?retryWrites=true&w=majority"
+}
