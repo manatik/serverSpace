@@ -22,18 +22,18 @@ router.post(
   async (req, res) => {
     try {
       const { id, limit, skip } = req.body
-
       if ( !id ) {
         res.json({message: 'Уровень английского не был получен'})
       }
       const result = getLevel(id)
+      const count = Math.ceil(await result.countDocuments() / 4)
       const data = await result.find().limit(parseInt(limit)).skip(parseInt(skip))
-      let data2 = []
+      let getData = []
       for (let i = 0; i < data.length; i++) {
-        data2[ i ] =
+        getData[ i ] =
           { title: data[ i ].title, img: data[ i ].image, number: data[ i ].number }
       }
-      res.json(data2)
+      res.json({ getData, count })
     } catch (e) {
       return res.json(e)
     }
@@ -45,7 +45,6 @@ router.post(
   async (req, res) => {
     try {
       const { level, number } = req.body
-
       if (!level || !number) {
         res.json({message: 'Уровень или номер задания не были получены'})
       }

@@ -7,5 +7,5 @@ const schema = new Schema({
     password: {type: String, required: true},
 }, {collection: 'users'})
 
-
 module.exports = model('User', schema)
+
