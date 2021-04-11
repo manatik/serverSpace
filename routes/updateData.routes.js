@@ -7,7 +7,7 @@ const {check, validationResult} = require('express-validator')
 router.post(
   '/update',
   check('email', 'Введите корректный E-mail').normalizeEmail().isEmail(),
-  check('name', 'Некорректное имя пользователя').not().isEmpty().isLength({min: 5, max: 15}),
+  check('name', 'Некорректное имя пользователя').not().isEmpty().isLength({min: 5}),
   check('phone', 'Некорректный номер').not().isEmpty().isMobilePhone('ru-RU'),
   async (req, res) => {
     try {
@@ -17,7 +17,16 @@ router.post(
         return res.status(400).json({message: err[0].msg})
       }
       const { id, name, email, phone } = req.body
-      const updateData = { name, email, phone }
+      const updateData = {}
+      if (name) {
+        updateData.name = name
+      }
+      if (email) {
+        updateData.email = email
+      }
+      if (phone) {
+        updateData.phone = phone
+      }
       const user = await ID.updateOne(
         { _id: id },
         { $set: updateData }
