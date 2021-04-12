@@ -136,7 +136,7 @@ router.post(
 
       await progressLesson.updateOne({ userId }, result)
 
-      res.status(200).json({ message: 'Всё ок' })
+      res.status(200).json({ message: 'Всё ок'})
     } catch (e) {
       res.status(500).json({ message: e })
     }
