@@ -37,13 +37,14 @@ router.post(
       const result = getLevel(id)
       const count = Math.ceil(await result.countDocuments() / 4)
       const data = await result.find().limit(parseInt(limit)).skip(parseInt(skip))
-      const progress = await progressLesson.findOne({userId})
-      const str = progressUserFunc(progress, id)
       let getData = []
       for (let i = 0; i < data.length; i++) {
         getData[ i ] =
           { title: data[ i ].title, img: data[ i ].image, number: data[ i ].number }
       }
+
+      const progress = await progressLesson.findOne({userId})
+      const str = progressUserFunc(progress, id)
       res.json({ getData, count, str })
     } catch (e) {
       return res.json(e)

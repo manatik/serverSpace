@@ -12,6 +12,8 @@ const {
   preIntermediateLessons,
   intermediateLessons
 } = require('../models/Lesson')
+const _ = require('lodash')
+
 
 router.post(
   '/register',
@@ -23,25 +25,6 @@ router.post(
   async (req, res) => {
     try {
       const error = validationResult(req)
-
-      const levels = {
-        "1": [0, 0],
-        "2": [0, 0],
-        "3": [0, 0],
-        "4": [0, 0],
-        "5": [0, 0],
-        "6": [0, 0],
-        "7": [0, 0],
-        "8": [0, 0],
-        "9": [0, 0],
-        "10": [0, 0],
-        "11": [0, 0],
-        "12": [0, 0],
-        "13": [0, 0],
-        "14": [0, 0],
-        "15": [0, 0],
-        "16": [0, 0]
-      }
 
       if ( !error.isEmpty() ) {
         return res.status(400).json({
@@ -63,6 +46,7 @@ router.post(
       await user.save()
 
       const data = await User.findOne({ email })
+      const userId = data._id
 
       const elem = await elementaryLessons.find()
       const inter = await intermediateLessons.find()
@@ -83,17 +67,22 @@ router.post(
       }
 
       _.reduce(obj2, (result, value, key) => {
+
         for (let i = 1; i <= value; i++) {
           obj[key][i] = [0,0]
         }
+        return result
       }, {})
+
+
       const progress = await new progressLessons({
-        userId: data._id,
+        userId: userId,
         Elementary: obj.Elementary,
         Intermediate: obj.Intermediate,
         PreIntermediate: obj.PreIntermediate,
         UpperIntermediate: obj.UpperIntermediate
       })
+
       progress.save()
 
       return res.status(201).json({ message: 'Пользователь создан' })
