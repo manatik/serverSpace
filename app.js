@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authUsers)
 app.use('/api/profile', updateDataUsers)
 app.use('/api', lvlLesson)
-app.options('http://localhost:3000/', cors());
+app.options(cors());
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/', express.static(path.join(__dirname, 'client', 'build')))
@@ -25,20 +25,20 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-const PORT = config.get('port') || 9000
+const PORT = process.env.PORT || config.get('port')
 
-async function start () {
+  async function start() {
   try {
     await mongoose.connect(config.get('mongoURL'), {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true
     })
-    app.listen(PORT || process.env.PORT, () => console.log(`Сервер пашет на ${PORT} порту`))
+    app.listen(PORT)
+    console.log("Сервер работает на", PORT || process.env.PORT)
   } catch (e) {
     console.log('Ошибки сервера', e.message)
     process.exit(1)
   }
 }
-
-start().then()
+start()
