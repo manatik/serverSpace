@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-const PORT = config.get('port') || process.env.PORT
+const PORT = config.get('port') || 9000
 
 async function start () {
   try {
@@ -34,7 +34,7 @@ async function start () {
       useUnifiedTopology: true,
       useCreateIndex: true
     })
-    app.listen(PORT, () => console.log(`Сервер пашет на ${PORT} порту`))
+    app.listen(PORT || process.env.PORT, () => console.log(`Сервер пашет на ${PORT} порту`))
   } catch (e) {
     console.log('Ошибки сервера', e.message)
     process.exit(1)
