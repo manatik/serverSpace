@@ -1,0 +1,39 @@
+{
+  "messages": [
+    {
+      "messageId": "xFqJyM3b",
+      "createdAt": "2021-05-09T16:26:33.815Z",
+      "userId": "zJoKgpor",
+      "messageText": "привет",
+      "senderName": "Матвей Михеев"
+    },
+    {
+      "messageId": "xyfm7bYd",
+      "createdAt": "2021-05-09T16:29:20.635Z",
+      "userId": "zJoKgpor",
+      "messageText": "ghbdtn",
+      "senderName": "Матвей Михеев"
+    },
+    {
+      "messageId": "8KbGSk2E",
+      "createdAt": "2021-05-09T16:48:59.662Z",
+      "userId": "uBEzqnOF",
+      "messageText": "gdfgdfgdf",
+      "senderName": "Nikita"
+    },
+    {
+      "messageId": "bsKnViSX",
+      "createdAt": "2021-05-09T16:49:00.896Z",
+      "userId": "uBEzqnOF",
+      "messageText": "gfdgdfgdfg",
+      "senderName": "Nikita"
+    },
+    {
+      "messageId": "aL9OycYN",
+      "createdAt": "2021-05-09T17:04:25.459Z",
+      "userId": "uBEzqnOF",
+      "messageText": "ааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа",
+      "senderName": "Nikita"
+    }
+  ]
+}

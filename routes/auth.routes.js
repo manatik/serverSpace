@@ -41,7 +41,7 @@ router.post(
       }
 
       const hashedPassword = await bcrypt.hash(password, 12)
-      const user = new User({ name, email, phone, password: hashedPassword })
+      const user = new User({ name, email, phone, password: hashedPassword, online: false })
 
       await user.save()
 

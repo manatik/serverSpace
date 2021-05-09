@@ -5,6 +5,7 @@ const schema = new Schema({
     name: {type: String, required: true},
     phone: {type: String, required: true},
     password: {type: String, required: true},
+    online: {type: Boolean, required: true}
 }, {collection: 'users'})
 
 module.exports = model('User', schema)
