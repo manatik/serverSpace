@@ -53,7 +53,7 @@ async function start() {
 start().then()
 
 const onConnection = (socket) => {
-  console.log('User connected')
+  //console.log('User connected')
 
   const { roomId } = socket.handshake.query
   socket.roomId = roomId

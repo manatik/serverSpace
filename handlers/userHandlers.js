@@ -1,10 +1,10 @@
 const User = require('../models/User')
 let users = []
 
-module.exports = async (io, socket) => {
+module.exports = (io, socket) => {
   const getUsers = async () => {
     users = await User.find()
-    await io.in(socket.roomId).emit('users', users)
+    io.in(socket.roomId).emit('users', users)
   }
 
   const addUser = async ({ username }) => {
@@ -12,8 +12,8 @@ module.exports = async (io, socket) => {
     await getUsers()
   }
 
-  const removeUser = async (userId) => {
-    users[userId].online = false
+  const removeUser = async (username) => {
+    await User.findOneAndUpdate({name: username}, {online: false})
     await getUsers()
   }
 
